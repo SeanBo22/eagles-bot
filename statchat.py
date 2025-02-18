@@ -4,7 +4,10 @@ from PIL import Image
 
 #  C:/Users/Other/.venv/Scripts/python.exe -m streamlit run c:/Users/Other/Desktop/eagles-bot/statchat.py
 
-# List of random responses
+import streamlit as st
+import random
+from PIL import Image
+
 # List of random responses
 responses = [
     "Eagles are better than the Lions, Vikings, and Packers combined!",
@@ -37,12 +40,6 @@ responses = [
     "The Eagles led the league in QB sneaks again in 2024, while NFC North teams still can’t figure out how to stop it!",
 ]
 
-
-
-import streamlit as st
-import random
-from PIL import Image
-
 # Load the avatar image
 avatar = Image.open("dan.jpg")
 
@@ -66,9 +63,13 @@ if prompt := st.chat_input():
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
     
-    # Select a random response
-    response = random.choice(responses)
+    # Check for the special question
+    if prompt.lower() == "who is the only team better than the eagles":
+        response = "The Cincinnati Bengals."
+    else:
+        response = random.choice(responses)
     
     st.session_state.messages.append({"role": "assistant", "content": response})
     with st.chat_message("assistant", avatar=avatar):
         st.write(response)
+
