@@ -65,7 +65,7 @@ if prompt := st.chat_input():
     
     # Check for the special question
     if prompt.lower() == "who is the only team better than the eagles":
-        response = "The Cincinnati Bengals."
+        response = "The Cincinnati Bengals. They had a total of 19 wins which was more than any other team. They also only played 17 games!"
     else:
         response = random.choice(responses)
     
